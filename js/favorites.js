@@ -82,6 +82,8 @@ function createWishlistCard(comic) {
             e.stopPropagation();
             removeFromWishlist(comic.id);
             loadWishlist();
+            updateWishlistBadge();
+            showToast('Removed from wishlist', 'info', 2000);
         });
     }
     

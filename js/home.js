@@ -230,15 +230,22 @@ function createComicCard(comic) {
     if (wishlistBtn) {
         wishlistBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            const wasInWishlist = isInWishlist(comic.id);
             toggleWishlist(comic.id);
             updateWishlistButtons();
             // Update this button's state
             if (isInWishlist(comic.id)) {
                 wishlistBtn.classList.add('active');
                 wishlistBtn.setAttribute('aria-label', 'Remove from wishlist');
+                if (!wasInWishlist) {
+                    showToast('Added to wishlist!', 'success', 2000);
+                }
             } else {
                 wishlistBtn.classList.remove('active');
                 wishlistBtn.setAttribute('aria-label', 'Add to wishlist');
+                if (wasInWishlist) {
+                    showToast('Removed from wishlist', 'info', 2000);
+                }
             }
         });
     }

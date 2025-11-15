@@ -147,12 +147,14 @@ function attachCartItemListeners() {
     
     // Remove buttons
     document.querySelectorAll('.cart-item-remove').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', async (e) => {
             const itemId = e.target.getAttribute('data-item-id');
             
-            if (confirm('Are you sure you want to remove this item from your cart?')) {
+            const confirmed = await showConfirm('Are you sure you want to remove this item from your cart?', 'Remove Item');
+            if (confirmed) {
                 removeFromCart(itemId);
                 loadCart();
+                showToast('Item removed from cart', 'success', 2000);
             }
         });
     });
@@ -198,18 +200,23 @@ function displayCartSummary(cart, container) {
 /**
  * Handle checkout process
  */
-function handleCheckout() {
+async function handleCheckout() {
     const cart = getCart();
     
     if (cart.length === 0) {
-        alert('Your cart is empty!');
+        showAlert('Your cart is empty!', 'warning', 'Empty Cart');
         return;
     }
     
     // Show checkout confirmation
     const total = getCartTotal() * 1.08; // Include tax
     
-    if (confirm(`Proceed with checkout?\n\nTotal: ${formatPrice(total)}\n\nThis is a demonstration site. No actual purchase will be made.`)) {
+    const confirmed = await showConfirm(
+        `Proceed with checkout?\n\nTotal: ${formatPrice(total)}\n\nThis is a demonstration site. No actual purchase will be made.`,
+        'Confirm Checkout'
+    );
+    
+    if (confirmed) {
         // Clear the cart
         clearCart();
         
@@ -247,17 +254,19 @@ function setupClearCart() {
     const clearCartBtn = document.getElementById('clear-cart-btn');
     
     if (clearCartBtn) {
-        clearCartBtn.addEventListener('click', () => {
+        clearCartBtn.addEventListener('click', async () => {
             const cart = getCart();
             
             if (cart.length === 0) {
-                alert('Your cart is already empty!');
+                showAlert('Your cart is already empty!', 'info', 'Empty Cart');
                 return;
             }
             
-            if (confirm('Are you sure you want to clear your entire cart?')) {
+            const confirmed = await showConfirm('Are you sure you want to clear your entire cart?', 'Clear Cart');
+            if (confirmed) {
                 clearCart();
                 loadCart();
+                showToast('Cart cleared successfully', 'success', 2000);
             }
         });
     }

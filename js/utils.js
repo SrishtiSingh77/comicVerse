@@ -138,7 +138,28 @@ function updateCartBadge() {
     if (badge) {
         const count = getCartItemCount();
         badge.textContent = count;
-        badge.style.display = count > 0 ? 'inline-block' : 'none';
+        badge.setAttribute('data-count', count);
+        if (count > 0) {
+            // Show badge
+            badge.classList.add('visible');
+            badge.style.display = 'flex';
+            badge.style.visibility = 'visible';
+            badge.style.opacity = '1';
+            // Adjust width for larger numbers
+            if (count >= 10) {
+                badge.style.minWidth = '24px';
+                badge.style.borderRadius = '12px';
+            } else {
+                badge.style.minWidth = '20px';
+                badge.style.borderRadius = '50%';
+            }
+        } else {
+            // Hide badge
+            badge.classList.remove('visible');
+            badge.style.display = 'none';
+            badge.style.visibility = 'hidden';
+            badge.style.opacity = '0';
+        }
     }
 }
 
@@ -293,7 +314,28 @@ function updateWishlistBadge() {
     if (badge) {
         const count = getWishlist().length;
         badge.textContent = count;
-        badge.style.display = count > 0 ? 'inline-block' : 'none';
+        badge.setAttribute('data-count', count);
+        if (count > 0) {
+            // Show badge
+            badge.classList.add('visible');
+            badge.style.display = 'flex';
+            badge.style.visibility = 'visible';
+            badge.style.opacity = '1';
+            // Adjust width for larger numbers
+            if (count >= 10) {
+                badge.style.minWidth = '24px';
+                badge.style.borderRadius = '12px';
+            } else {
+                badge.style.minWidth = '20px';
+                badge.style.borderRadius = '50%';
+            }
+        } else {
+            // Hide badge
+            badge.classList.remove('visible');
+            badge.style.display = 'none';
+            badge.style.visibility = 'hidden';
+            badge.style.opacity = '0';
+        }
     }
     
     // Update all wishlist buttons on the page
