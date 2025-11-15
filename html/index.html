@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ComicVerse Hub - Your ultimate destination for comic books from Marvel, DC, Image Comics and more!">
+    <title>ComicVerse Hub - Home | Dynamic Online Comic Store</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">COMICVERSE HUB</a>
+            <nav class="nav" id="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="browse.html" class="nav-link">Browse</a>
+                <a href="cart.html" class="nav-link cart-link">
+                    Cart
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Carousel Section -->
+        <section class="hero-carousel" id="hero-carousel">
+            <div class="carousel-container" id="carousel-container">
+                <!-- Carousel slides will be dynamically inserted here -->
+            </div>
+            
+            <!-- Carousel Controls -->
+            <button class="carousel-controls carousel-prev" id="carousel-prev" aria-label="Previous slide">‹</button>
+            <button class="carousel-controls carousel-next" id="carousel-next" aria-label="Next slide">›</button>
+            
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators" id="carousel-indicators">
+                <!-- Indicators will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- New Releases Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">New Releases</h2>
+                <div class="comic-grid" id="new-releases-grid">
+                    <!-- New releases will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Series Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Popular Series</h2>
+                <div class="comic-grid" id="popular-series-grid">
+                    <!-- Popular series will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Publisher Spotlights Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Publisher Spotlights</h2>
+                
+                <!-- Marvel Spotlight -->
+                <div class="publisher-spotlight" id="marvel-spotlight">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Marvel Comics</h3>
+                    <div class="comic-grid" id="marvel-grid">
+                        <!-- Marvel comics will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- DC Spotlight -->
+                <div class="publisher-spotlight" style="margin-top: var(--spacing-xl);" id="dc-spotlight">
+                    <h3 style="color: var(--color-secondary); margin-bottom: var(--spacing-md);">DC Comics</h3>
+                    <div class="comic-grid" id="dc-grid">
+                        <!-- DC comics will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Image Comics Spotlight -->
+                <div class="publisher-spotlight" style="margin-top: var(--spacing-xl);" id="image-spotlight">
+                    <h3 style="color: var(--color-accent); margin-bottom: var(--spacing-md);">Image Comics</h3>
+                    <div class="comic-grid" id="image-grid">
+                        <!-- Image comics will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About ComicVerse Hub</h3>
+                <p>Your ultimate destination for the best comic books from all major publishers. Discover new stories, revisit classics, and build your collection.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="browse.html">Browse All Comics</a>
+                <a href="cart.html">Shopping Cart</a>
+            </div>
+            <div class="footer-section">
+                <h3>Publishers</h3>
+                <a href="browse.html?publisher=Marvel">Marvel Comics</a>
+                <a href="browse.html?publisher=DC">DC Comics</a>
+                <a href="browse.html?publisher=Image">Image Comics</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@comicversehub.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ComicVerse Hub. All rights reserved. This is a portfolio demonstration site.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/comics.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/home.js"></script>
+</body>
+</html>
+

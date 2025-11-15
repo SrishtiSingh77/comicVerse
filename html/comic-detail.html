@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View detailed information about comic books at ComicVerse Hub">
+    <title>Comic Details | ComicVerse Hub</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Comic Detail Page Specific Styles */
+        .comic-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .comic-cover-section {
+            position: sticky;
+            top: calc(var(--header-height) + var(--spacing-lg));
+        }
+        
+        .comic-cover-wrapper {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--color-primary);
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .comic-cover-wrapper:hover {
+            transform: scale(1.05);
+        }
+        
+        .comic-cover-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: var(--color-medium-gray);
+        }
+        
+        .comic-info-section {
+            background-color: var(--color-dark-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--color-border);
+        }
+        
+        .comic-title {
+            color: var(--color-primary);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+        }
+        
+        .comic-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-border);
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .meta-value {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: bold;
+        }
+        
+        .comic-price-large {
+            font-size: 2rem;
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+        
+        .comic-synopsis {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .comic-synopsis h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .comic-synopsis p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .comic-creators {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .comic-creators h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .creator-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+        }
+        
+        .creator-item {
+            background-color: var(--color-medium-gray);
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+        }
+        
+        .creator-role {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .creator-name {
+            font-size: 1rem;
+            color: var(--color-text);
+            font-weight: bold;
+        }
+        
+        .comic-characters {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .comic-characters h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .character-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .character-tag {
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .add-to-cart-section {
+            background-color: var(--color-medium-gray);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .quantity-selector label {
+            color: var(--color-text);
+            font-weight: bold;
+        }
+        
+        .quantity-input {
+            width: 80px;
+            padding: var(--spacing-sm);
+            background-color: var(--color-dark-gray);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .add-to-cart-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            font-size: 1.2rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-secondary);
+            font-weight: bold;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .back-link:hover {
+            color: var(--color-accent);
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: var(--color-text-muted);
+        }
+        
+        .error-message h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        @media (max-width: 968px) {
+            .comic-detail-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comic-cover-section {
+                position: static;
+            }
+            
+            .comic-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">COMICVERSE HUB</a>
+            <nav class="nav" id="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="browse.html" class="nav-link">Browse</a>
+                <a href="cart.html" class="nav-link cart-link">
+                    Cart
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <a href="browse.html" class="back-link">← Back to Browse</a>
+            
+            <!-- Comic Detail Content -->
+            <div id="comic-detail-content">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+            
+            <!-- Error Message (shown if comic not found) -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <h2>Comic Not Found</h2>
+                <p>The comic you're looking for doesn't exist.</p>
+                <a href="browse.html" class="btn btn-primary" style="margin-top: var(--spacing-md);">Browse All Comics</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About ComicVerse Hub</h3>
+                <p>Your ultimate destination for the best comic books from all major publishers. Discover new stories, revisit classics, and build your collection.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="browse.html">Browse All Comics</a>
+                <a href="cart.html">Shopping Cart</a>
+            </div>
+            <div class="footer-section">
+                <h3>Publishers</h3>
+                <a href="browse.html?publisher=Marvel">Marvel Comics</a>
+                <a href="browse.html?publisher=DC">DC Comics</a>
+                <a href="browse.html?publisher=Image">Image Comics</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@comicversehub.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ComicVerse Hub. All rights reserved. This is a portfolio demonstration site.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/comics.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/detail.js"></script>
+</body>
+</html>
+
