@@ -147,6 +147,7 @@ const COMICS_DATA = [
             artist: 'Frank Quitely',
             colorist: 'Jamie Grant'
         },
+        
         featured: false,
         popular: true
     },
