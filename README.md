@@ -106,27 +106,11 @@ No build tools or dependencies required! Just a modern web browser.
 1. **Clone the repository** (or download as ZIP):
 
    ```bash
-   git clone https://github.com/vaibhavkothari33/ComicVerse.git
+   git clone https://github.com/SrishtiSingh77/comicVerse.git
    cd ComicVerse
    ```
 
-2. **Open in browser**:
-
-   - Simply open `html/index.html` in your web browser
-   - Or use a local server:
-
-     ```bash
-     # Using Python 3
-     python -m http.server 8000
-
-     # Using Node.js (http-server)
-     npx http-server
-
-     # Using PHP
-     php -S localhost:8000
-     ```
-
-3. **Access the site**:
+2. **Access the site**:
    - Direct file: `file:///path/to/comic-verse/html/index.html`
    - Local server: `http://localhost:8000/html/index.html`
 
@@ -258,6 +242,7 @@ Potential improvements for future versions:
 **Vaibhav Kothari**
 
 - GitHub: [@vaibhavkothari33](https://github.com/vaibhavkothari33)
+  -GitHub: [@srishtisingh77](https://github.com/srishtisingh77)
 - Live Site: [ComicVerse Hub](https://srishtisingh77.github.io/comicVerse/html/index.html)
 
 ## 📄 License
